@@ -1,0 +1,9 @@
+.language-tab a {
+    margin: 1px;
+    padding: 5px 10px;
+    border: 1px solid #0080BF;
+}
+.language-tab a.current {
+    background: #0080BF;
+    color: white;
+}
