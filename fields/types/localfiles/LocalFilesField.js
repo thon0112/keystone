@@ -35,7 +35,7 @@ var Item = React.createClass({
 		}
 
 		if (!this.props.isQueued) {
-			var actionLabel = this.props.deleted ? 'undo' : 'remove';
+			var actionLabel = this.props.deleted ? 'undo' : 'delete';
 			body.push(<span className='file-action' onClick={this.props.toggleDelete}>{actionLabel}</span>);
 		}
 

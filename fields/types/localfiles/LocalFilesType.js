@@ -33,7 +33,7 @@ function localfiles(list, path, options) {
 		throw new Error('Invalid Configuration\n\n' +
 			'localfiles fields (' + list.key + '.' + path + ') do not currently support being used as initial fields.\n');
 	}
-
+	
 	if (options.overwrite !== false) {
 		options.overwrite = true;
 	}
@@ -54,7 +54,7 @@ function localfiles(list, path, options) {
 	if (options.post && options.post.move) {
 		this.post('move', options.post.move);
 	}
-
+	
 }
 
 /*!
@@ -79,9 +79,9 @@ localfiles.prototype.addToSchema = function() {
 	var paths = this.paths = {
 		// fields
 		filename:		this._path.append('.filename'),
-		path:			this._path.append('.path'),
-		originalname:	this._path.append('.originalname'),
-		size:			this._path.append('.size'),
+		path:			  this._path.append('.path'),
+		originalname:		this._path.append('.originalname'),
+		size:			  this._path.append('.size'),
 		filetype:		this._path.append('.filetype'),
 		// virtuals
 		exists:			this._path.append('.exists'),
@@ -92,15 +92,10 @@ localfiles.prototype.addToSchema = function() {
 
 	var schemaPaths = new mongoose.Schema({
 		filename:		String,
-		originalname:	String,
+		originalname:   String,
 		path:			String,
 		size:			Number,
 		filetype:		String
-	});
-
-	// The .href virtual returns the public path of the file
-	schemaPaths.virtual('href').get(function() {
-		return field.href.call(field, this);
 	});
 
 	schema.add(this._path.addTo({}, [schemaPaths]));
@@ -117,7 +112,7 @@ localfiles.prototype.addToSchema = function() {
 		if (typeof element_id === 'undefined') {
 			value = values[0];
 		} else {
-			value = _.findWhere(values, { '_id': element_id });
+			value = _.findWhere(values, { 'id': element_id });
 		}
 
 		if (typeof value === 'undefined') {
@@ -144,7 +139,7 @@ localfiles.prototype.addToSchema = function() {
 			item.set(field.path, []);
 		} else {
 			var values = item.get(field.path);
-			var value = _.findWhere(values, { '_id': element_id });
+			var value = _.findWhere(values, { 'id': element_id });
 			if (typeof value !== 'undefined') {
 				values.splice(values.indexOf(value), 1);
 			}
@@ -171,7 +166,7 @@ localfiles.prototype.addToSchema = function() {
 		delete: function(element_id) {
 			if (exists(this, element_id)) {
 				var values = this.get(field.path);
-				var value = _.findWhere(values, { '_id': element_id });
+				var value = _.findWhere(values, { 'id': element_id });
 				if (typeof value !== 'undefined') {
 					fs.unlinkSync(path.join(value.path, value.filename));
 				}
@@ -234,7 +229,7 @@ localfiles.prototype.hasFormatter = function() {
 localfiles.prototype.href = function(file) {
 	if (!file.filename) return '';
 	var prefix = this.options.prefix ? this.options.prefix : file.path;
-	return prefix + '/' + file.filename;
+	return path.join(prefix, file.filename);
 };
 
 
@@ -279,33 +274,33 @@ localfiles.prototype.updateItem = function(item, data) {//eslint-disable-line no
  */
 
 localfiles.prototype.uploadFiles = function(item, files, update, callback) {
-
+	
 	var field = this;
-
+	
 	if ('function' === typeof update) {
 		callback = update;
 		update = false;
 	}
-
+	
 	async.map(files, function(file, processedFile) {
-
+		
 		var prefix = field.options.datePrefix ? moment().format(field.options.datePrefix) + '-' : '',
 			filename = prefix + file.name,
 			filetype = file.mimetype || file.type;
-
+		
 		if (field.options.allowedTypes && !_.contains(field.options.allowedTypes, filetype)) {
 			return processedFile(new Error('Unsupported File Type: ' + filetype));
 		}
-
+		
 		var doMove = function(doneMove) {
-
+			
 			if ('function' === typeof field.options.filename) {
 				filename = field.options.filename(item, file);
 			}
-
+			
 			fs.move(file.path, path.join(field.options.dest, filename), { clobber: field.options.overwrite }, function(err) {
 				if (err) return doneMove(err);
-
+				
 				var fileData = {
 					filename: filename,
 					originalname: file.originalname,
@@ -313,29 +308,29 @@ localfiles.prototype.uploadFiles = function(item, files, update, callback) {
 					size: file.size,
 					filetype: filetype
 				};
-
+				
 				if (update) {
 					item.get(field.path).push(fileData);
 				}
-
+				
 				doneMove(null, fileData);
 			});
-
+			
 		};
-
-		field.callHook('pre:move', item, file, function(err) {
+		
+		field.callHook('pre:move', [item, file], function(err) {
 			if (err) return processedFile(err);
-
+			
 			doMove(function(err, fileData) {
 				if (err) return processedFile(err);
-				field.callHook('post:move', item, file, fileData, function(err) {
+				field.callHook('post:move', [item, file, fileData], function(err) {
 					return processedFile(err, fileData);
 				});
 			});
 		});
-
+		
 	}, callback);
-
+	
 };
 
 
@@ -396,7 +391,7 @@ localfiles.prototype.getRequestHandler = function(item, req, paths, callback) {
 
 		// Upload new files
 		if (req.files) {
-
+			
 			var upFiles = req.files[paths.upload];
 			if (upFiles) {
 				if (!Array.isArray(upFiles)) {
@@ -405,7 +400,7 @@ localfiles.prototype.getRequestHandler = function(item, req, paths, callback) {
 
 				if (upFiles.length > 0) {
 					upFiles = _.filter(upFiles, function(f) { return typeof f.name !== 'undefined' && f.name.length > 0; });
-
+					
 					if (upFiles.length > 0) {
 						console.log('uploading files:');
 						console.log(upFiles);
