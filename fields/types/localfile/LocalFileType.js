@@ -250,14 +250,25 @@ localfile.prototype.updateItem = function(item, data) {//eslint-disable-line no-
  */
 
 localfile.prototype.uploadFile = function(item, file, update, callback) {
+	console.log('upload-debug:');
+	//console.log(file);
+	console.log(this.options);
 	var field = this,
 		prefix = field.options.datePrefix ? moment().format(field.options.datePrefix) + '-' : '',
 		filename = prefix + file.name,
-		filetype = file.mimetype || file.type;
+		filetype = file.mimetype || file.type,
+		filesize = file.size;
 
 	if (field.options.allowedTypes && !_.contains(field.options.allowedTypes, filetype)) {
 		return callback(new Error('Unsupported File Type: ' + filetype));
 	}
+
+	/* updated */
+	if (field.options.maxSize && filesize > field.options.maxSize){
+		return callback(new Error('File Size is over ' + field.options.maxSize + " (current: "+ filesize + ")"));
+	}
+	/* end */
+
 
 	if ('function' === typeof update) {
 		callback = update;
