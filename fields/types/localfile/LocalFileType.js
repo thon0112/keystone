@@ -250,9 +250,7 @@ localfile.prototype.updateItem = function(item, data) {//eslint-disable-line no-
  */
 
 localfile.prototype.uploadFile = function(item, file, update, callback) {
-	console.log('upload-debug:');
-	//console.log(file);
-	console.log(this.options);
+
 	var field = this,
 		prefix = field.options.datePrefix ? moment().format(field.options.datePrefix) + '-' : '',
 		filename = prefix + file.name,
