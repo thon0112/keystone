@@ -57,37 +57,39 @@ exports = module.exports = function(req, res) {
 	var renderView = function() {
 
 		/* updated */
-		var role = new Role;
-		role.findById(req.user.role,function(err, result){
-            if (err){
-                console.log(err);
-                //if error, denied all action
-                req.list.set('nodelete',true);
-				req.list.set('noedit',true);
-				req.list.set('nocreate',true);
-            }
-            else{
-                var result = result._doc;
-                var currentPermission = result.adminPermissions[req.list.path];
-                //console.log("currentPermission["+req.list.path+"]:" + currentPermission);
-
-                if(currentPermission == 'editable'){
-
-                }
-                else if(currentPermission == 'readOnly'){
-                	req.list.set('nodelete',true);
+		if(req.user.role !== undefined){
+			var role = new Role;
+			role.findById(req.user.role,function(err, result){
+	      if (err){
+	        console.log(err);
+	        //if error, denied all action
+	        req.list.set('nodelete',true);
 					req.list.set('noedit',true);
 					req.list.set('nocreate',true);
-                }
-                else{
-                	//other status and 'denied' status
-                	req.list.set('nodelete',true);
-					req.list.set('noedit',true);
-					req.list.set('nocreate',true);
-                }
-            }
-        });
-        /* updated */
+	      }
+	      else{
+	        var result = result._doc;
+	        var currentPermission = result.adminPermissions[req.list.path];
+	        //console.log("currentPermission["+req.list.path+"]:" + currentPermission);
+
+	      	if(currentPermission == 'editable'){
+
+	    		}
+		      else if(currentPermission == 'readOnly'){
+	        	req.list.set('nodelete',true);
+						req.list.set('noedit',true);
+						req.list.set('nocreate',true);
+	        }
+			    else{
+			    	//other status and 'denied' status
+			    	req.list.set('nodelete',true);
+						req.list.set('noedit',true);
+						req.list.set('nocreate',true);
+			    }
+	      }
+	    });
+		}
+    /* updated */
 
 		var query = req.list.paginate({ filters: queryFilters, page: req.params.page, perPage: req.list.get('perPage') }).sort(sort.by);
 
