@@ -287,10 +287,17 @@ localfiles.prototype.uploadFiles = function(item, files, update, callback) {
 		var prefix = field.options.datePrefix ? moment().format(field.options.datePrefix) + '-' : '',
 			filename = prefix + file.name,
 			filetype = file.mimetype || file.type;
+		var filesize = file.size;
 		
 		if (field.options.allowedTypes && !_.contains(field.options.allowedTypes, filetype)) {
 			return processedFile(new Error('Unsupported File Type: ' + filetype));
 		}
+
+		/* updated */
+		if (field.options.maxSize && filesize > field.options.maxSize){
+			return callback(new Error('File Size is over ' + field.options.maxSize + " (current: "+ filesize + ")"));
+		}
+		/* end */
 		
 		var doMove = function(doneMove) {
 			

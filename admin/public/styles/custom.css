@@ -10,3 +10,20 @@
 .language-tab{
 	height: 35px;
 }
+.preview{
+	display:none;
+	border: 1px solid #eee;
+    margin-bottom: 20px;
+    padding: 6px 15px;
+
+}
+.preview-btn{
+    height: 30px;
+}
+.preview-btn > a 
+.close-preview-btn{
+	cursor: pointer;
+}
+.lang-title{
+	color: #0080BF;
+}
