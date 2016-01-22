@@ -89,9 +89,48 @@ exports = module.exports = function(req, res) {
 
 			_.each(order, function(id, i) {
 				queue.push(function(done) {
-					req.list.model.update({ _id: id }, { $set: { sortOrder: i } }, done);
+					//original
+					//req.list.model.update({ _id: id }, { $set: { sortOrder: i } }, done);
+
+					//console.log("_id:"+id + "&sortOrder:" + i);
+					/* updated */
+					switch(req.list.key){
+				        case 'Tour':{
+				            langKey = 'tourLang';
+				            break;
+				        }
+				        case 'Zone':{
+				            langKey = 'zoneLang';
+				            break;
+				        }
+				        case 'PointOfInterest':{
+				            langKey = 'pointOfInterestLang';
+				            break;
+				        }
+				        /* OP Master CMS */
+				        case 'Shop':{
+				        	langKey ='parentLang';
+				        	break;
+				        }
+				        default:{
+				            break;
+				        }
+			    	}
+			    	var condition = {};
+					req.list.model.findOne({ _id: id }).exec(function(err, result){		           
+				        var condition = {};
+				        condition[langKey] = result[langKey];
+				        req.list.model.update(
+				           	condition, 
+				            { $set: { sortOrder: i }},
+				            {upsert:false, multi: true},
+				            done
+				        );
+				    });
+				    /* updated end*/
 				});
 			});
+			
 
 			async.parallel(queue, function(err) {
 
