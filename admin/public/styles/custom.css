@@ -27,3 +27,7 @@
 .lang-title{
 	color: #0080BF;
 }
+
+.items-list .control .control-copy{
+    background: url('/keystone/images/icons/copy.png') top left no-repeat;
+}

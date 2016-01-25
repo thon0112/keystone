@@ -395,6 +395,9 @@ block content
 			if !list.get('nodelete')
 				- firstColspan++;
 				col(width=26)
+			if !list.get('noedit') && !list.get('nocreate')
+				- firstColspan++;
+				col(width=26)
 			//- if sortable && !xFilters
 			if sortable 
 				- firstColspan++;
