@@ -108,7 +108,11 @@ exports = module.exports = function(req, res) {
 				            break;
 				        }
 				        /* OP Master CMS */
-				        case 'Shop':{
+				        case 'MenuLocation':
+				        case 'News':
+				        case 'Shop':
+				        case 'Slider':
+				        case 'Tutorial':{
 				        	langKey ='parentLang';
 				        	break;
 				        }
