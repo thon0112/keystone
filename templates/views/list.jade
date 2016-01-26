@@ -398,7 +398,7 @@ block content
 			if !list.get('nodelete')
 				- firstColspan++;
 				col(width=26)
-			if !list.get('noedit') && !list.get('nocreate')
+			if !list.get('noedit') && !list.get('nocreate') && list.get('copyable')
 				- firstColspan++;
 				col(width=26)
 			//- if sortable && !xFilters
