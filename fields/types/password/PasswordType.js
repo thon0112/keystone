@@ -124,6 +124,22 @@ password.prototype.compare = function(item, candidate, callback) {
  * @api public
  */
 password.prototype.validateInput = function(data, required, item) {
+	
+ 	var ruleCount = 0;
+    if(/[\@\#\$\%\^\&\*\(\)\_\+\!]/.test(data[this.path])) ruleCount++;
+    if(/[a-z]/.test(data[this.path])) ruleCount++;
+    if(/[0-9]/.test(data[this.path])) ruleCount++;
+    if(/[A-Z]/.test(data[this.path])) ruleCount++;
+
+    //console.log("data[this.path]:"+data[this.path].length);
+    //console.log("ruleCount"+ruleCount);
+    if(ruleCount < 3){
+    	return false;
+    }
+    if(data[this.path].length < 8){
+    	return false;
+    }
+   
 	if (data[this.path] && this.paths.confirm in data) {
 		return data[this.path] === data[this.paths.confirm] ? true : false;
 	}
