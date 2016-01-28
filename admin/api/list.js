@@ -94,6 +94,7 @@ exports = module.exports = function(req, res) {
 
 					//console.log("_id:"+id + "&sortOrder:" + i);
 					/* updated */
+					var langKey;
 					switch(req.list.key){
 				        case 'Tour':{
 				            langKey = 'tourLang';
