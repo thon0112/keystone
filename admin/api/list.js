@@ -112,7 +112,8 @@ exports = module.exports = function(req, res) {
 				        case 'MenuLocation':
 				        case 'News':
 				        case 'Shop':
-				        case 'Slider':
+				        case 'TopBanner':
+				        case 'Banner':
 				        case 'Tutorial':{
 				        	langKey ='parentLang';
 				        	break;
