@@ -77,14 +77,11 @@ html
 
 		#footer: .container
 			p 	#{brand} #{appversion} 
-<<<<<<< HEAD
-				| Powered by <a href="http://www.4d.com.hk/" target="_blank">Four Directions</a> version #{version}.
-=======
 				| Powered by <a href="http://www.4d.com.hk" target="_blank">Four Directions</a>.
->>>>>>> 8c51b7d539da867c39c54de32dbb7908bcfb2e91
 				if User && user
 					|  Signed in as 
-					a(href='/keystone/' + User.path + '/' + user.id)= User.getDocumentName(user)
+					//- a(href='/keystone/' + User.path + '/' + user.id)= User.getDocumentName(user)
+					a(href='/admin/user')= User.getDocumentName(user)
 					| .
 
 		//- Common
