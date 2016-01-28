@@ -120,17 +120,21 @@ exports = module.exports = function(req, res) {
 				            break;
 				        }
 			    	}
-			    	var condition = {};
-					req.list.model.findOne({ _id: id }).exec(function(err, result){		           
-				        var condition = {};
-				        condition[langKey] = result[langKey];
-				        req.list.model.update(
-				           	condition, 
-				            { $set: { sortOrder: i }},
-				            {upsert:false, multi: true},
-				            done
-				        );
-				    });
+			    if(langKey){
+				    var condition = {};
+						req.list.model.findOne({ _id: id }).exec(function(err, result){		           
+					        var condition = {};
+					        condition[langKey] = result[langKey];
+					        req.list.model.update(
+					           	condition, 
+					            { $set: { sortOrder: i }},
+					            {upsert:false, multi: true},
+					            done
+					        );
+					    });
+			    }else{
+			    	req.list.model.update({ _id: id }, { $set: { sortOrder: i } }, done);
+			    }
 				    /* updated end*/
 				});
 			});
