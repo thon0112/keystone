@@ -30,7 +30,7 @@ var Item = React.createClass({
     var imgStyle = {
 		  maxWidth: '100px'
 		};
-    if(allowedTypes.indexOf(this.props.filetype)){
+    if(allowedTypes.indexOf(this.props.filetype) > -1){
 			body.push(<span className='file-filename'><img src={this.props.path.replace('./media', '') + '/' + this.props.filename} style={imgStyle}/></span>);
     }else{
 			body.push(<span className='file-filename'>{filename}</span>);

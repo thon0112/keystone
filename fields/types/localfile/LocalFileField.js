@@ -101,7 +101,7 @@ module.exports = Field.create({
 	    var imgStyle = {
 			  maxWidth: '100px'
 			};
-	    if(allowedTypes.indexOf(this.props.value.filetype)){
+	    if(allowedTypes.indexOf(this.props.value.filetype) > -1){
 				return <img src={this.props.value.path.replace('./media', '') + '/' + this.props.value.filename} style={imgStyle}/>;
 	    }else{
 				return this.props.value.filename;
