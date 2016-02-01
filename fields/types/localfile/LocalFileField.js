@@ -93,7 +93,20 @@ module.exports = Field.create({
 		if (this.hasLocal()) {
 			return this.fileFieldNode().value.split('\\').pop();
 		} else {
-			return this.props.value.filename;
+			// return this.props.value.filename;
+			// updated
+			var allowedTypes = [
+	      'image/jpeg', 'image/png', 'image/gif'
+	    ];
+	    var imgStyle = {
+			  maxWidth: '100px'
+			};
+	    if(allowedTypes.indexOf(this.props.value.filetype)){
+				return <img src={this.props.value.path.replace('./media', '') + '/' + this.props.value.filename} style={imgStyle}/>;
+	    }else{
+				return this.props.value.filename;
+	    }
+			// updated
 		}
 	},
 

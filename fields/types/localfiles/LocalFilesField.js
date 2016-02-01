@@ -22,7 +22,20 @@ var Item = React.createClass({
 		var body = [];
 
 		body.push(<img className='file-icon' src={'/keystone/images/icons/32/' + iconName + '.png'} />);
-		body.push(<span className='file-filename'>{filename}</span>);
+		//body.push(<span className='file-filename'>{filename}</span>);
+		// updated
+		var allowedTypes = [
+      'image/jpeg', 'image/png', 'image/gif'
+    ];
+    var imgStyle = {
+		  maxWidth: '100px'
+		};
+    if(allowedTypes.indexOf(this.props.filetype)){
+			body.push(<span className='file-filename'><img src={this.props.path.replace('./media', '') + '/' + this.props.filename} style={imgStyle}/></span>);
+    }else{
+			body.push(<span className='file-filename'>{filename}</span>);
+    }
+		// updated
 
 		if (this.props.size) {
 			body.push(<span className='file-size'>{bytes(this.props.size)}</span>);
