@@ -35,3 +35,73 @@
 .custom_logo{
     text-align:right;
 }
+
+span[data-reactid*='isValid'],label[data-reactid*='timeslot']{
+    display:none;
+}
+input[data-reactid*='Sunday']:after{ content:'Sunday'; }
+input[data-reactid*='Monday']:after{ content:'Monday'; }
+input[data-reactid*='Tueday']:after{ content:'Tueday'; }
+input[data-reactid*='Wednesday']:after{ content:'Wednesday'; }
+input[data-reactid*='Thurday']:after{ content:'Thurday'; }
+input[data-reactid*='Friday']:after{ content:'Friday'; }
+input[data-reactid*='Saturday']:after{ content:'Saturday'; }
+
+input[data-reactid*='isValid']:after{
+    line-height: 10px;
+    padding-left: 16px;
+}
+input[data-reactid*='isValid']{
+    margin-left:0px;
+    margin-top: 11px;
+}
+
+.field[data-reactid*='isValid']:after,
+.field[data-reactid*='timeslot']:after{
+    clear:none;
+}
+.field[data-reactid*='timeslot2'][data-reactid*='to']:after{
+    clear:both;
+}
+.field-ui[data-reactid*='isValid']{
+    width: 100px;
+    padding-bottom: 10px;
+}
+input.form-control[data-reactid*='timeslot']{
+    width: 100px;
+    float: left;
+}
+.field-ui[data-reactid*='timeslot']{
+    width: auto;
+}
+.field[data-reactid*='timeslot']{
+    margin-top:0px;
+}
+.field-ui[data-reactid*='timeslot'][data-reactid*='to']{
+    padding-left: 0px;
+}
+.field-ui[data-reactid*='timeslot1'][data-reactid*='from']:before{
+    content:'Timeslot 1:';
+    line-height: 34px;
+    float: left;
+    padding-right: 10px;
+}
+.field-ui[data-reactid*='timeslot1'][data-reactid*='to']:before,
+.field-ui[data-reactid*='timeslot2'][data-reactid*='to']:before{
+    content:'to';
+    padding-right: 16px;
+    line-height: 34px;
+    float: left;
+}
+.field-ui[data-reactid*='timeslot2'][data-reactid*='from']:before{
+    content:'Timeslot 2:';
+    line-height: 34px;
+    float: left;
+    padding-right: 10px;    
+}
+@media (max-width: 991px){
+    .field[data-reactid*='timeslot1'][data-reactid*='to']:after,
+    .field[data-reactid*='isValid']:after{
+    clear:both;
+    }
+}
