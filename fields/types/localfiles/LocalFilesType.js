@@ -295,7 +295,7 @@ localfiles.prototype.uploadFiles = function(item, files, update, callback) {
 
 		/* updated */
 		if (field.options.maxSize && filesize > field.options.maxSize){
-			return callback(new Error('File Size is over ' + field.options.maxSize + " (current: "+ filesize + ")"));
+			return processedFile(new Error('File Size is over ' + field.options.maxSize + " (current: "+ filesize + ")"));
 		}
 		/* end */
 		
