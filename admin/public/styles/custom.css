@@ -1,3 +1,6 @@
+#list-filters button.btn.btn-default.btn-filter {
+    display: none;
+}
 .required-field label:after {
     content: "*";
     color: red;
