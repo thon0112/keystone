@@ -1,3 +1,7 @@
+.required-field label:after {
+    content: "*";
+    color: red;
+}
 .language-tab a {
     margin: 1px;
     padding: 5px 10px;
