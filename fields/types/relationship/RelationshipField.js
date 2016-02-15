@@ -20,9 +20,7 @@ module.exports = Field.create({
 	
 	getInitialState: function() {
 		return {
-			//updated
-			ready: true;
-			//ready: this.props.value ? false : true,
+			ready: this.props.value ? false : true,
 			simpleValue: this.props.value,
 			expandedValues: null
 		};
