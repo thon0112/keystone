@@ -18,3 +18,6 @@ block content
 					//- a(href='/keystone/' + User.path + '/' + user.id)= User.getDocumentName(user)
 					a(href='/admin/user')= User.getDocumentName(user)
 					| .
+		div
+			each val in cmsOption
+				a(class="btn btn-primary", href='/sso?action='+val)= 'Go To '+val

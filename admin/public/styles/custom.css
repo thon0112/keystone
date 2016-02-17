@@ -49,13 +49,13 @@
 span[data-reactid*='isValid'],label[data-reactid*='timeslot']{
     display:none;
 }
-input[data-reactid*='Sunday']:after{ content:'Sunday'; }
-input[data-reactid*='Monday']:after{ content:'Monday'; }
-input[data-reactid*='Tueday']:after{ content:'Tueday'; }
-input[data-reactid*='Wednesday']:after{ content:'Wednesday'; }
-input[data-reactid*='Thurday']:after{ content:'Thurday'; }
-input[data-reactid*='Friday']:after{ content:'Friday'; }
-input[data-reactid*='Saturday']:after{ content:'Saturday'; }
+input[data-reactid*='sunday']:after{ content:'Sunday'; }
+input[data-reactid*='monday']:after{ content:'Monday'; }
+input[data-reactid*='tueday']:after{ content:'Tueday'; }
+input[data-reactid*='wednesday']:after{ content:'Wednesday'; }
+input[data-reactid*='thurday']:after{ content:'Thurday'; }
+input[data-reactid*='friday']:after{ content:'Friday'; }
+input[data-reactid*='saturday']:after{ content:'Saturday'; }
 
 input[data-reactid*='isValid']:after{
     line-height: 10px;
@@ -78,8 +78,9 @@ input[data-reactid*='isValid']{
     padding-bottom: 10px;
 }
 input.form-control[data-reactid*='timeslot']{
-    width: 100px;
+    width: 70px;
     float: left;
+    margin: 0px 4px;
 }
 .field-ui[data-reactid*='timeslot']{
     width: auto;
