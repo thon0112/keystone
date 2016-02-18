@@ -1,5 +1,6 @@
 extends ../layout/base
 
+
 block js
 	- var getListMeta = function(list) { return _.pick(list, ['key', 'label', 'path']); }
 	script.
@@ -18,6 +19,7 @@ block content
 					//- a(href='/keystone/' + User.path + '/' + user.id)= User.getDocumentName(user)
 					a(href='/admin/user')= User.getDocumentName(user)
 					| .
-		div
-			each val in cmsOption
-				a(class="btn btn-primary", href='/sso?action='+val)= 'Go To '+val
+		div(style='clear:both;margin-top:10px;')
+		each val in cmsOption
+			div(style='float:left;margin:10px 10px 0 0;')
+				a(class="btn btn-primary", href='/sso?action=redirect&cms='+val)= 'Go To '+val
