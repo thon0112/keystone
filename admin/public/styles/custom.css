@@ -53,7 +53,7 @@ input[data-reactid*='sunday']:after{ content:'Sunday'; }
 input[data-reactid*='monday']:after{ content:'Monday'; }
 input[data-reactid*='tueday']:after{ content:'Tueday'; }
 input[data-reactid*='wednesday']:after{ content:'Wednesday'; }
-input[data-reactid*='thurday']:after{ content:'Thurday'; }
+input[data-reactid*='thursday']:after{ content:'Thursday'; }
 input[data-reactid*='friday']:after{ content:'Friday'; }
 input[data-reactid*='saturday']:after{ content:'Saturday'; }
 
