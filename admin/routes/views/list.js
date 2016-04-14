@@ -72,7 +72,7 @@ exports = module.exports = function(req, res) {
 		      }else{
 		        var result = result._doc;
 		        var currentPermission = result.adminPermissions[req.list.path];
-		        //console.log("currentPermission["+req.list.path+"]:" + currentPermission);
+		        console.log("currentPermission["+req.list.path+"]:" + currentPermission);
 
 		      	if(currentPermission == 'editable'){
 		      		//do nothing
