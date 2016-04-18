@@ -9,6 +9,7 @@ block css
 block js
 	script.
 		Keystone.list = !{JSON.stringify(list.getOptions())};
+		Keystone.editable = !{JSON.stringify(editable)};
 		Keystone.wysiwyg = { options: !{JSON.stringify(wysiwygOptions)} };
 		Keystone.itemId = '!{item.id}';
 	script(src='/keystone/js/packages.js')
