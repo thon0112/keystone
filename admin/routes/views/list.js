@@ -153,6 +153,10 @@ exports = module.exports = function(req, res) {
 			    	donePermission(null);
 				}
 			}
+			else{
+				viewLocals.editable = true;
+				donePermission(null);
+			}
 	    	/* updated */
 			        
 			    },
