@@ -99,6 +99,11 @@ exports = module.exports = function(req, res) {
 						    	donePermission(null);
 							}
 						}
+						else{
+							// is super admin
+							viewLocals.editable = true;
+						    donePermission(null);
+						}
 				        
 				    },
 				    function(doneRender) {
