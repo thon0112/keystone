@@ -1,7 +1,8 @@
 var _ = require('underscore'),
 	bytes = require('bytes'),
 	React = require('react'),
-	Field = require('../Field');
+	Field = require('../Field'),
+	Note = require('../../components/Note');
 
 var ICON_EXTS = [
 	'aac', 'ai', 'aiff', 'avi', 'bmp', 'c', 'cpp', 'css', 'dat', 'dmg', 'doc', 'dotx', 'dwg', 'dxf', 'eps', 'exe', 'flv', 'gif', 'h',
@@ -197,6 +198,7 @@ module.exports = Field.create({
 				<div className="field-ui">
 					{this.renderContainer()}
 					{this.renderToolbar()}
+					<Note note={this.props.note} />
 				</div>
 			</div>
 		);
