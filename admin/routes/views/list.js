@@ -226,7 +226,7 @@ exports = module.exports = function(req, res) {
 
 	} else if (!req.list.get('nodelete') && req.query['delete']) { //eslint-disable-line dot-notation
 
-		if (!checkCSRF()) return renderView();
+		// if (!checkCSRF()) return renderView();
 
 		if (req.query['delete'] === req.user.id) { //eslint-disable-line dot-notation
 			req.flash('error', 'You can\'t delete your own ' + req.list.singular + '.');
