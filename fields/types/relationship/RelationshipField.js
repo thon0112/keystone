@@ -171,9 +171,9 @@ module.exports = Field.create({
 	},
 	
 	renderField: function() {
-		if (!this.state.ready) {
-			return this.renderLoadingUI();
-		}
+		// if (!this.state.ready) {
+		// 	return this.renderLoadingUI();
+		// }
 		var body = [];
 
 		body.push(<Select multi={this.props.many} onChange={this.updateValue} name={this.props.path} asyncOptions={this.getOptions} value={this.state.expandedValues} />);
@@ -184,6 +184,10 @@ module.exports = Field.create({
 					view {this.props.refList.singular.toLowerCase()}
 				</a>
 			);
+		}
+		//Updated
+		if (!this.state.ready) {
+			body.push(<span>**Undefined relationship</span>)
 		}
 		
 		return body;
