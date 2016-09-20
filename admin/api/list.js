@@ -114,7 +114,22 @@ exports = module.exports = function(req, res) {
 				        case 'Shop':
 				        case 'TopBanner':
 				        case 'Banner':
-				        case 'Tutorial':{
+				        case 'Tutorial':
+				        case 'Attraction':
+						case 'Show':
+						case 'ConservationMatterIssue':
+						case 'ConservationMatterTopic':
+						case 'ConservationMatterPost':
+						case 'AnimalCollection':
+						case 'GuestService':
+						case 'GuestServicePost':
+						case 'Transportation':
+						case 'GetCloserToTheAnimals':
+						case 'GetCloserToAnimalsPass':
+						case 'TicketInformation':
+						case 'TicketInformationPass':
+						case 'TicketInformationGeneralAdmission':
+						case 'TicketInformationOceanFasTrack':{
 				        	langKey ='parentLang';
 				        	break;
 				        }
