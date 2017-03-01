@@ -129,7 +129,8 @@ exports = module.exports = function(req, res) {
 						case 'TicketInformation':
 						case 'TicketInformationPass':
 						case 'TicketInformationGeneralAdmission':
-						case 'TicketInformationOceanFasTrack':{
+						case 'TicketInformationOceanFasTrack':
+						case 'AnimalCollectionGame': {
 				        	langKey ='parentLang';
 				        	break;
 				        }
